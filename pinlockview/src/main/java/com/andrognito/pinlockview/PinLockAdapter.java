@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -68,13 +69,14 @@ public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 holder.mNumberButton.setText(String.valueOf((position + 1) % 10));
             }
 
-            if (mCustomizationOptionsBundle != null) {
+//            if (mCustomizationOptionsBundle != null) {
+            if (false) {
                 holder.mNumberButton.setTextColor(mCustomizationOptionsBundle.getTextColor());
                 if (mCustomizationOptionsBundle.getButtonBackgroundDrawable() != null) {
                     if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                         holder.mNumberButton.setBackgroundDrawable(mCustomizationOptionsBundle.getButtonBackgroundDrawable());
                     } else {
-                        holder.mNumberButton.setBackground(mCustomizationOptionsBundle.getButtonBackgroundDrawable());
+                        holder.mNumberButton.setBackground(mCustomizationOptionsBundle.getButtonBackgroundDrawable().mutate());
                     }
                 }
                 holder.mNumberButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCustomizationOptionsBundle.getTextSize());
@@ -154,6 +156,7 @@ public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             mNumberButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d("PinLock", "onClick: " + getAdapterPosition());
                     if (mOnNumberClickListener != null) {
                         mOnNumberClickListener.onNumberClicked(getAdapterPosition());
                     }
