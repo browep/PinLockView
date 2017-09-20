@@ -69,19 +69,20 @@ public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 holder.mNumberButton.setText(String.valueOf((position + 1) % 10));
             }
 
-//            if (mCustomizationOptionsBundle != null) {
-            if (false) {
-                holder.mNumberButton.setTextColor(mCustomizationOptionsBundle.getTextColor());
-                if (mCustomizationOptionsBundle.getButtonBackgroundDrawable() != null) {
-                    if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                        holder.mNumberButton.setBackgroundDrawable(mCustomizationOptionsBundle.getButtonBackgroundDrawable());
-                    } else {
-                        holder.mNumberButton.setBackground(mCustomizationOptionsBundle.getButtonBackgroundDrawable().mutate());
-                    }
-                }
-                holder.mNumberButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCustomizationOptionsBundle.getTextSize());
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(mCustomizationOptionsBundle.getButtonSize(), mCustomizationOptionsBundle.getButtonSize());
-                holder.mNumberButton.setLayoutParams(params);
+            if (mCustomizationOptionsBundle != null) {
+//            if (false) {
+//                holder.mNumberButton.setTextColor(mCustomizationOptionsBundle.getTextColor());
+//                if (mCustomizationOptionsBundle.getButtonBackgroundDrawable() != null) {
+//                    if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+//                        holder.mNumberButton.setBackgroundDrawable(mCustomizationOptionsBundle.getButtonBackgroundDrawable());
+//                    } else {
+//                        holder.mNumberButton.setBackground(mCustomizationOptionsBundle.getButtonBackgroundDrawable().mutate());
+//                    }
+//                }
+                int textSize = mCustomizationOptionsBundle.getTextSize();
+                holder.mNumberButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+//                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(mCustomizationOptionsBundle.getButtonSize(), mCustomizationOptionsBundle.getButtonSize());
+//                holder.mNumberButton.setLayoutParams(params);
             }
         }
     }
